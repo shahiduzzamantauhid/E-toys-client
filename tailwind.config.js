@@ -8,8 +8,7 @@ export default {
   },
   plugins: [require("daisyui")],
   daisyui: {
-    themes: ["acid"],
+    themes: ["bumblebee"],
   },
   
 }
-

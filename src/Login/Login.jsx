@@ -1,25 +1,31 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProviders";
+import { toast } from "react-hot-toast";
 
 const Login = () => {
-  const {signIn} = useContext(AuthContext);
   
+  const {signIn} = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
     const handleLogin = (e) => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        form.reset()
+        
         signIn(email,password)
-        .then(result =>{
-          const user = result.user;
-          console.log(user);
+        .then(() =>{
+          form.reset();
+          toast.success("Login Successfull");
+          navigate(from, {replace: true});
         })
-        // .catch((error) => {
-        //   const errorCode = error.code;
-        //   const errorMessage = error.message;
-        // });
+        .catch((error) => {
+          const errorMessage = error.message;
+          toast.error(errorMessage);
+      });
+        
     }
   return (
     <div>

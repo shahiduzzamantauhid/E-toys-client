@@ -1,11 +1,14 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import {AuthContext} from "../Providers/AuthProviders";
+import { updateProfile } from "firebase/auth";
 const Signup = () => {
   const {createUser} = useContext(AuthContext);
     const handleSignup = (e) => {
         e.preventDefault();
         const form = e.target;
+        const name = form.name.value;
+        const photourl = form.photourl.value;
         const email = form.email.value;
         const password = form.password.value;
         form.reset()
@@ -13,8 +16,22 @@ const Signup = () => {
         createUser(email,password)
         .then(result =>{
           const user = result.user;
+          handleNamePhotourl(user,name,photourl);
           console.log(user);
         })
+    }
+    const handleNamePhotourl = (user,name,photourl) => {
+      updateProfile(user, {
+        displayName: name,
+        photoURL: photourl,
+        }).then(() => {
+        // Profile updated!
+        console.log(user.displayName);
+        }).catch((error) => {
+          console.error(error);
+        // An error occurred
+        // ...
+        });
     }
     return (
         <div>
@@ -32,6 +49,17 @@ const Signup = () => {
                   placeholder="name"
                   className="input input-bordered"
                   name="name"
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Photo Url</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Photo Url"
+                  className="input input-bordered"
+                  name="photourl"
                 />
               </div>
               <div className="form-control">

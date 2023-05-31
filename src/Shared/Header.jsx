@@ -1,6 +1,14 @@
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../Providers/AuthProviders";
 
 const Header = () => {
+  const {user, logOut} = useContext(AuthContext);
+  const handleLogout = () => {
+    logOut()
+    .then(() => {} )
+    .catch();
+  }
     return (
        <div className="bg-base-200">
           <div className="navbar w-11/12 mx-auto">
@@ -24,18 +32,32 @@ const Header = () => {
         <li><a>Item 3</a></li>
       </ul>
     </div>
-    <Link to="/" className="btn btn-ghost normal-case text-xl">e-toys</Link>
+    <NavLink to="/" className="btn btn-ghost normal-case text-xl">e-toys</NavLink>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
-      <li><Link to="/">Home</Link></li>
-      <li><Link to="/about">About</Link></li>
-      <li><a>Item 3</a></li>
+      <li><NavLink to="/">Home</NavLink></li>
+      <li><NavLink to="/alltoys">All toys</NavLink></li>
+      <li><NavLink to="/addtoys">Add Toys</NavLink></li>
+      <li><NavLink to="/mytoys">My Toys</NavLink></li>
+      <li><NavLink to="/blogs">Blog</NavLink></li>
     </ul>
   </div>
   <div className="navbar-end">
-    <Link to="/login" className="btn">Login</Link>
-  </div>
+  <div className="dropdown dropdown-end">
+      <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+        <div className="w-10 rounded-full">
+          <img src={!user && "http://gg.gg/148o34" || user.photoURL} />
+        </div>
+      </label>
+      <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+        
+          {user && <li><Link to="/profile" className="justify-between">Profile<span className="badge">New</span></Link></li>}
+        
+        <li>{!user && <Link to="/login" className="between">Login</Link> || <Link onClick={handleLogout} className="between">Logout</Link>}</li>
+      </ul>
+    </div>
+    </div>
 </div>
        </div>
     );

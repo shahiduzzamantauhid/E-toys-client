@@ -1,9 +1,14 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {AuthContext} from "../Providers/AuthProviders";
 import { updateProfile } from "firebase/auth";
+import { toast } from "react-hot-toast";
 const Signup = () => {
   const {createUser} = useContext(AuthContext);
+  const {signInWithGoogle}= useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
     const handleSignup = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -17,7 +22,6 @@ const Signup = () => {
         .then(result =>{
           const user = result.user;
           handleNamePhotourl(user,name,photourl);
-          console.log(user);
         })
     }
     const handleNamePhotourl = (user,name,photourl) => {
@@ -26,12 +30,18 @@ const Signup = () => {
         photoURL: photourl,
         }).then(() => {
         // Profile updated!
-        console.log(user.displayName);
-        }).catch((error) => {
-          console.error(error);
-        // An error occurred
-        // ...
         });
+    }
+    const handleGoogleLogin = () => {
+      signInWithGoogle()
+      .then(() =>{
+        navigate(from, {replace: true});
+      }
+      )
+      .catch((error) => {
+        const errorMessage = error.message;
+        toast.error(errorMessage);
+    });
     }
     return (
         <div>
@@ -88,16 +98,17 @@ const Signup = () => {
                     Forgot password?
                   </a>
                 </label>
+                <p>Already Have an Account? Lets <Link to="/login" className="underline">Click Here To Login</Link></p>
+            
               </div>
-              <div className="form-control mt-6">
-                <button className="btn btn-primary">Login</button>
-                <button className="btn bg-base-100 text-black hover:text-white mt-4">Continue with Google</button>
-                <button className="btn btn-secondery mt-4">Continue with Github</button>
-              </div>
+              <div className="form-control">
+                <button className="btn btn-primary">Sign Up</button>
+                </div>
               
-            <p>Already Have an Account? Lets <Link to="/login" className="underline">Login</Link></p>
             </div>
             </form>
+            <button onClick={handleGoogleLogin} className="btn bg-base-100 text-black hover:text-white mx-8 mb-4">Continue with Google</button>
+              
           </div>
         </div>
       </div>

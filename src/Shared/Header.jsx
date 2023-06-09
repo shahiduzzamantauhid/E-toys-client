@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProviders";
+import Logo from "/image/Shop Logo (500 × 250px).png"
 
 const Header = () => {
   const {user, logOut} = useContext(AuthContext);
@@ -10,7 +11,7 @@ const Header = () => {
     .catch();
   }
     return (
-       <div className="bg-base-200">
+       <div className="bg-base-200 ">
           <div className="navbar w-11/12 mx-auto">
   <div className="navbar-start">
     <div className="dropdown">
@@ -32,7 +33,7 @@ const Header = () => {
         <li><a>Item 3</a></li>
       </ul>
     </div>
-    <NavLink to="/" className="btn btn-ghost normal-case text-xl">e-toys</NavLink>
+  <NavLink to="/" className=""><img src={Logo} alt="" className="avatar w-52" /></NavLink>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">

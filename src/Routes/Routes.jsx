@@ -8,6 +8,9 @@ import Addtoys from "../Addtoys/Addtoys.jsx";
 import PrivateRoute from "./PrivateRoute.jsx";
 import Alltoys from "../All toys/Alltoys.jsx";
 import Blog from "../Blogs/Blog.jsx";
+import Mytoys from "../My toys/Mytoys.jsx";
+import Page404 from "../Page404/page404.jsx";
+import SingleProduct from "../SngleProduct/SingleProduct.jsx";
 
 const router = createBrowserRouter([
   {
@@ -48,10 +51,26 @@ const router = createBrowserRouter([
         },
         {
             path: "/mytoys",
-            element: <PrivateRoute><div>Hellow</div></PrivateRoute>,
+            element: <PrivateRoute>
+                <Mytoys/>
+            </PrivateRoute>,
         },
+        {
+            path: "/singleproduct/:id",
+            element: <PrivateRoute>
+                <SingleProduct/>
+            </PrivateRoute>,
+            loader: async ({ params }) => {
+                return fetch(`http://localhost:5000/singleproduct/${params.id}`);
+              },
+        }
     ]  
   },
+
+  {
+    path: '/*',
+    element: <Page404/>
+}
 ]);
 
 export default router;

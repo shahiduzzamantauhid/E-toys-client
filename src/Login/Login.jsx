@@ -4,7 +4,7 @@ import { AuthContext } from "../Providers/AuthProviders";
 import { toast } from "react-hot-toast";
 
 const Login = () => {
-  
+  const {signInWithGoogle}= useContext(AuthContext);
   const {signIn} = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -18,14 +18,25 @@ const Login = () => {
         signIn(email,password)
         .then(() =>{
           form.reset();
-          toast.success("Login Successfull");
           navigate(from, {replace: true});
         })
         .catch((error) => {
           const errorMessage = error.message;
           toast.error(errorMessage);
       });
-        
+    }
+    // google login function
+    const handleGoogleLogin = () => {
+      signInWithGoogle()
+      .then(() =>{
+        toast.success("Signin Successfull");
+        navigate(from, {replace: true});
+      }
+      )
+      .catch((error) => {
+        const errorMessage = error.message;
+        toast.error(errorMessage);
+    });
     }
   return (
     <div>
@@ -60,16 +71,15 @@ const Login = () => {
                     Forgot password?
                   </a>
                 </label>
+                <div>Do not have account? Lets <Link to="/signup" className="underline">create One</Link></div>
+            
               </div>
-              <div className="form-control mt-6">
+              <div className="form-control">
                 <button className="btn btn-primary">Login</button>
-                <button className="btn bg-base-100 text-black hover:text-white mt-4">Continue with Google</button>
-                <button className="btn btn-secondery mt-4">Continue with Github</button>
               </div>
-              
-            <p>Do not have account? Lets <Link to="/signup" className="underline">create An Account.</Link></p>
-            </div>
+              </div>
             </form>
+            <button onClick={handleGoogleLogin} className="mx-8 mb-6 btn bg-base-100 text-black hover:text-white">Continue with Google</button>
           </div>
         </div>
       </div>

@@ -77,7 +77,7 @@ const Alltoys = () => {
                       <h3 className="text-xl-gray-200"><del className="pr-2">${toy.regularPrice} </del> ({parseInt((toy.regularPrice-toy.sellingPrice)*100/toy.regularPrice)}%) </h3>
                       <p className="text-sm text-primary">Ratting: {toy.ratting}</p>
                       <div className="flex justify-end card-actions align-right">
-                        <button className="btn btn-secondary mt-[-50px]">More Info</button>
+                      <Link to={`/singleproduct/${toy._id}`} className="btn btn-secondary mt-[-50px]">More Info</Link>
                       </div>
                     </div>
                   </div>
@@ -105,7 +105,7 @@ const Alltoys = () => {
                       <h3 className="text-xl-gray-200"><del className="pr-2">${toy.regularPrice} </del> ({parseInt((toy.regularPrice-toy.sellingPrice)*100/toy.regularPrice)}%) </h3>
                       <p className="text-sm text-primary">Ratting: {toy.ratting}</p>
                       <div className="flex justify-end card-actions align-right">
-                        <button className="btn btn-secondary mt-[-50px]">More Info</button>
+                      <Link to={`/singleproduct/${toy._id}`} className="btn btn-secondary mt-[-50px]">More Info</Link>
                       </div>
                     </div>
                   </div>
@@ -133,7 +133,7 @@ const Alltoys = () => {
                       <h3 className="text-xl-gray-200"><del className="pr-2">${toy.regularPrice} </del> ({parseInt((toy.regularPrice-toy.sellingPrice)*100/toy.regularPrice)}%) </h3>
                       <p className="text-sm text-primary">Ratting: {toy.ratting}</p>
                       <div className="flex justify-end card-actions align-right">
-                        <button className="btn btn-secondary mt-[-50px]">More Info</button>
+                      <Link to={`/singleproduct/${toy._id}`} className="btn btn-secondary mt-[-50px]">More Info</Link>
                       </div>
                     </div>
                   </div>
@@ -161,7 +161,7 @@ const Alltoys = () => {
                       <h3 className="text-xl-gray-200"><del className="pr-2">${toy.regularPrice} </del> ({parseInt((toy.regularPrice-toy.sellingPrice)*100/toy.regularPrice)}%) </h3>
                       <p className="text-sm text-primary">Ratting: {toy.ratting}</p>
                       <div className="flex justify-end card-actions align-right">
-                        <button className="btn btn-secondary mt-[-50px]">More Info</button>
+                      <Link to={`/singleproduct/${toy._id}`} className="btn btn-secondary mt-[-50px]">More Info</Link>
                       </div>
                     </div>
                   </div>
@@ -174,7 +174,7 @@ const Alltoys = () => {
           <div className="card">
             <div className="card-body">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {toys.map((toy) => (
+                {category.map((toy) => (
                   <div className="card shadow-lg bg-base-100" key={toy._id}>
                     <figure>
                       <img
@@ -189,7 +189,7 @@ const Alltoys = () => {
                       <h3 className="text-xl-gray-200"><del className="pr-2">${toy.regularPrice} </del> ({parseInt((toy.regularPrice-toy.sellingPrice)*100/toy.regularPrice)}%) </h3>
                       <p className="text-sm text-primary">Ratting: {toy.ratting}</p>
                       <div className="flex justify-end card-actions align-right">
-                        <button className="btn btn-secondary mt-[-50px]">More Info</button>
+                      <Link to={`/singleproduct/${toy._id}`} className="btn btn-secondary mt-[-50px]">More Info</Link>
                       </div>
                     </div>
                   </div>

@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../Home/Home.jsx"
 import Main from "../Layout/Main.jsx";
-import About from "../About/About.jsx";
 import Login from "../Login/Login.jsx";
 import Signup from "../Signup/Signup.jsx";
 import Addtoys from "../Addtoys/Addtoys.jsx";
@@ -20,14 +19,6 @@ const router = createBrowserRouter([
         {
             path: "/",
             element: <Home/>,
-        },
-        {
-            path: "/about",
-            element: <About/>,
-        },
-        {
-            path: "/profile",
-            element: <PrivateRoute><div>Hellow</div></PrivateRoute>,
         },
         {
             path: "/login",

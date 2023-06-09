@@ -9,40 +9,6 @@ const Mytoys = () => {
   const { user } = useContext(AuthContext);
   const [toys, setToys] = useState([]);
   const [edit, setEdit] = useState([]);
-  //update toys
-  // const [updateToys, setUpdateToys] = useState({
-  //     toyname: "",
-  //     description: "",
-  //     sellingPrice: "",
-  //     image: "",
-  //     category: "",
-  //     email: "",
-  // });
-  //update toys
-  // const handleUpdateToys = (e) => {
-  //     const newToys = { ...updateToys };
-  //     newToys[e.target.name] = e.target.value;
-  //     setUpdateToys(newToys);
-  // };
-  //update toys
-  // const handleUpdateToysSubmit = (e) => {
-  //     e.preventDefault();
-  //     fetch(`http://localhost:5000/toys/${updateToys._id}`, {
-
-  //         method: "PUT",
-  //         headers: {
-  //             "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify(updateToys),
-  //     })
-  //         .then((res) => res.json())
-  //         .then((data) => {
-  //             console.log(data);
-  //             if (data.modifiedCount > 0) {
-  //                 alert("Updated Successfully");
-  //             }
-  //         });
-  // };
   //delete toys
   const handleDeleteToys = (id) => {
     fetch(`http://localhost:5000/toys/${id}`, {
@@ -58,8 +24,8 @@ const Mytoys = () => {
         }
       });
   };
-  //get toys
-
+  
+  //get toys from database with user email
   useEffect(() => {
     fetch(`http://localhost:5000/toys/${user.email}`)
       .then((res) => res.json())

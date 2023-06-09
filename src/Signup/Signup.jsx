@@ -3,7 +3,9 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import {AuthContext} from "../Providers/AuthProviders";
 import { updateProfile } from "firebase/auth";
 import { toast } from "react-hot-toast";
+import useTitle from "../Hooks/useTitle";
 const Signup = () => {
+  useTitle("Signup");
   const {createUser} = useContext(AuthContext);
   const {signInWithGoogle}= useContext(AuthContext);
   const navigate = useNavigate();

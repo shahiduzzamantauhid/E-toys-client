@@ -1,8 +1,10 @@
 import { useContext } from "react";
 import { toast } from "react-hot-toast";
 import { AuthContext } from "../Providers/AuthProviders";
+import useTitle from "../Hooks/useTitle";
 
 const Addtoys = () => {
+  useTitle("Add Toys");
   const { user } = useContext(AuthContext);
   let displayName = user.displayName;
   let email = user.email;

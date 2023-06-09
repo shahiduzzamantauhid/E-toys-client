@@ -2,8 +2,10 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Providers/AuthProviders";
 import Modal from "./Modal";
 import { toast } from "react-hot-toast";
+import useTitle from "../Hooks/useTitle";
 
 const Mytoys = () => {
+  useTitle("My Toys");
   const { user } = useContext(AuthContext);
   const [toys, setToys] = useState([]);
   const [edit, setEdit] = useState([]);

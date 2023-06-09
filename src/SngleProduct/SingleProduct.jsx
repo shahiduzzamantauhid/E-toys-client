@@ -1,7 +1,9 @@
 import { useLoaderData } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import useTitle from "../Hooks/useTitle";
 const SingleProduct = () => {
+  useTitle("Product Details");
   const data = useLoaderData();
   const {image, toyname, category, sellingPrice, regularPrice, description, stock} = data;
   console.log(data);

@@ -3,7 +3,9 @@ import Alltoys from "../All toys/Alltoys";
 import Gallary from "./Gallary";
 import AOS from 'aos'
 import 'aos/dist/aos.css'
+import useTitle from "../Hooks/useTitle";
 const Home = () => {
+  useTitle("Home");
   useEffect(()=>{
     AOS.init({
       offset: 200,

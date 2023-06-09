@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 import {Link} from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import useTitle from "../Hooks/useTitle";
 const Alltoys = () => {
+  useTitle("All Toys");
   const [toys, setToys] = useState([]);
   const [category, setCategory] = useState([])
   useEffect(() => {

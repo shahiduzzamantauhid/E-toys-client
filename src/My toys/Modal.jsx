@@ -1,14 +1,13 @@
 import { toast } from "react-hot-toast";
 
 const Modal = ({ toy }) => {
-
   const id = toy._id;
   const handleUpdateToysSubmit = (e) => {
     e.preventDefault();
 
     const form = e.target;
     const toyname = form.toyname.value;
-    const sellingPrice = form.sellingPrice.value;
+    const sellingPrice = parseFloat(form.sellingPrice.value);
     const category = form.category.value;
     const stock = form.stock.value;
     const image = form.image.value;
@@ -22,7 +21,7 @@ const Modal = ({ toy }) => {
       image,
       category,
     };
-    fetch(`http://localhost:5000/toys/${id}`, {
+    fetch(`https://toyserver-eosin.vercel.app/toys/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -39,11 +38,11 @@ const Modal = ({ toy }) => {
   };
   return (
     <div>
-        <form method="dialog" className="modal-backdrop">
+      <form method="dialog" className="modal-backdrop">
         <button className="bg-gray-300 w-8 h-8 rounded-full">X</button>
       </form>
       <form
-      method="dialog"
+        method="dialog"
         onSubmit={handleUpdateToysSubmit}
         className=" shadow-2xl bg-base-200 p-8 rounded-xl"
       >
@@ -139,7 +138,6 @@ const Modal = ({ toy }) => {
           <button className="btn btn-primary">Update</button>
         </div>
       </form>
-      
     </div>
   );
 };

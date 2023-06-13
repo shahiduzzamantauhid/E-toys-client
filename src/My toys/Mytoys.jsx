@@ -11,28 +11,36 @@ const Mytoys = () => {
   const [edit, setEdit] = useState([]);
   //delete toys
   const handleDeleteToys = (id) => {
-    fetch(`http://localhost:5000/toys/${id}`, {
+    fetch(`https://toyserver-eosin.vercel.app/toys/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         if (data.deletedCount > 0) {
-          toast.success('Deleted sccessfully')
+          toast.success("Deleted sccessfully");
           const remainingToys = toys.filter((toys) => toys._id !== id);
           setToys(remainingToys);
         }
       });
   };
-  
+
   //get toys from database with user email
   useEffect(() => {
-    fetch(`http://localhost:5000/toys/${user.email}`)
+    fetch(`https://toyserver-eosin.vercel.app/toys/${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setToys(data);
       });
   }, [user]);
+
+  const handleSort = () => {
+    fetch(`https://toyserver-eosin.vercel.app/sort/${user.email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setToys(data);
+      });
+  };
 
   const modalOpen = (toys) => {
     setEdit(toys);
@@ -41,8 +49,17 @@ const Mytoys = () => {
 
   return (
     <div className="lg:w-10/12 mx-auto my-8">
-      <h1 className="text-center text-3xl font-bold my-4">My Added Toys</h1>
+      <h1 className="text-center text-5xl font-bold my-4">My Added Toys</h1>
       <div className="overflow-x-auto w-full">
+        <div className="text-right">
+          {" "}
+          <button
+            onClick={handleSort}
+            className="btn btn-outline btn-accent btn-wide mb-4"
+          >
+            Sort By Price
+          </button>
+        </div>
         <table className="table w-full">
           {/* head */}
           <thead>
@@ -59,13 +76,6 @@ const Mytoys = () => {
           <tbody>
             {toys?.map((toy, index) => (
               <tr key={toy._id}>
-                {/* <td>{toys.toyname}</td>
-            <td>{toys.description}</td>
-            <td>{toys.sellingPrice}</td>
-            <td>
-                
-            </td> */}
-
                 <th>
                   <label>{index + 1}</label>
                 </th>

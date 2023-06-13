@@ -24,6 +24,8 @@ const Header = () => {
 
         <li><NavLink to="/">Home</NavLink></li>
       <li><NavLink to="/alltoys">All toys</NavLink></li>
+      {user && <li><NavLink to="/addtoys" className="justify-between">Add Toys</NavLink></li>}
+          {user && <li><NavLink to="/mytoys" className="justify-between">My Toys</NavLink></li>}
       <li><NavLink to="/blogs">Blog</NavLink></li>
       </ul>
     </div>

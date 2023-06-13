@@ -12,15 +12,25 @@ const Addtoys = () => {
     e.preventDefault();
     const form = e.target;
     const toyname = form.toyname.value;
-    const regularPrice = form.regularPrice.value;
-    const sellingPrice = form.sellingPrice.value;
+    const regularPrice = parseFloat(form.regularPrice.value);
+    const sellingPrice = parseFloat(form.sellingPrice.value);
     const ratting = form.ratting.value;
-    const category = form.category.value;
+    const category =
+      form.category.value === "--- select ---"
+        ? "Undefiend"
+        : form.category.value;
     const stock = form.stock.value;
     const image = form.image.value;
     const description = form.description.value;
-    toast.success("Toy Added Successfully");
-    console.log(toyname, regularPrice, sellingPrice, ratting, stock, image, description);
+    console.log(
+      toyname,
+      regularPrice,
+      sellingPrice,
+      ratting,
+      stock,
+      image,
+      description
+    );
     form.reset();
     const toy = {
       displayName,
@@ -32,16 +42,15 @@ const Addtoys = () => {
       category,
       stock,
       image,
-      description
-
+      description,
     };
-    fetch("http://localhost:5000/addtoy", {
+    fetch("https://toyserver-eosin.vercel.app/addtoys", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(toy),
     })
       .then(() => {
-        
+        toast.success("Toy Added Successfully");
       })
       .catch((error) => {
         toast.error(error.message);

@@ -4,7 +4,7 @@ const Footer = () => {
     <>
     
     <footer className=" bg-base-200 text-base-content">
-      <div className="footer p-10 w-10/12 mx-auto">
+      <div className="footer p-10 mx-auto">
       <div className="text-center">
         <div className="w-52">
         <img src={Logo} alt="" />
